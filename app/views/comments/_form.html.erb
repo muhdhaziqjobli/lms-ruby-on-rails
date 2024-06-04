@@ -1,0 +1,19 @@
+<%= form_with model: [ article, article.comments.build ] do |form| %>
+	<h3>Add Comment</h3>
+	<div class="inline-form-group">
+		<%= form.label :status, "Status:", class: "inline-label" %>
+		<%= form.select :status, Visible::VALID_STATUSES, { selected: 'public' }, class: "inline-input" %>
+	</div>
+
+	<div class="inline-form-group">
+		<%= form.label :commenter, "Name:", class: "inline-label" %>
+		<%= form.text_field :commenter, class: "inline-input" %>
+	</div>
+	<div class="inline-form-group">
+		<%= form.label :body, "Comment:", class: "inline-label" %>
+		<%= form.text_area :body, class: "inline-input" %>
+	</div>
+	<div class="mb-2">
+		<%= form.submit %>
+	</div>
+<% end %>

@@ -1,0 +1,31 @@
+<div class="mt-2">
+	Our blog has <%= Article.public_count %> articles and counting!
+
+	<a class="button float-right" href="<%= new_article_path %>">New</a>
+</div>
+
+<ul>
+	<% @articles.each do |article| %>
+		<% unless article.archived? %>
+			<div class="card">
+				<div class="card-header"><%= link_to article.title, article %></div>
+				<div>
+					<%= article.body %>
+
+					<div class="card-header mt-3">
+						Comments(<%= article.public_comment_count %>)
+						<button class="open-comment-modal button" data-article-id="<%= article.id %>">Add</button>
+					</div>
+					<%= render article.comments %>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+</ul>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="comment-form-container"></div>
+  </div>
+</div>

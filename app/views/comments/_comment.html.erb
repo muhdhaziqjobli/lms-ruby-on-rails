@@ -1,0 +1,17 @@
+<% unless comment.archived? %>
+	<div class="card">
+		<div class="card-header">
+			<%= comment.commenter %>
+
+			<span class="float-right">
+				<%= link_to "Delete", [comment.article, comment], data: {
+					turbo_method: :delete,
+					turbo_confirm: "Are you sure?"
+					} %>
+			</span>
+		</div>
+		<div>
+			<%= comment.body %>
+		</div>
+	</div>
+<% end %>

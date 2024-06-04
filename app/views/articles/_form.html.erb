@@ -1,0 +1,28 @@
+<%= form_with model: article do |form| %>
+	<div class="inline-form-group">
+		<%= form.label :status, "Status:", class: "inline-label"  %>
+		<%= form.select :status, Visible::VALID_STATUSES, selected: article.status || 'public', class: "inline-input" %>
+	</div>
+
+	<div class="inline-form-group">
+		<%= form.label :title, "Title:", class: "inline-label"  %>
+		<%= form.text_field :title, class: "inline-input" %>
+		<br>
+		<% article.errors.full_messages_for(:title).each do |message| %>
+			<div><%= message %></div>
+		<% end %>
+	</div>
+
+	<div class="inline-form-group">
+		<%= form.label :body, "Post:", class: "inline-label" %>
+		<%= form.text_area :body, class: "inline-input" %>
+		<br>
+		<% article.errors.full_messages_for(:body).each do |message| %>
+			<div><%= message %></div>
+		<% end %>
+	</div>
+
+	<div>
+		<%= form.submit %>
+	</div>
+<% end %>
